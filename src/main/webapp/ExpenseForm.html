@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Expense Form</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <h1>Expense Form</h1>
+  <div class="form-container">
+  <form id="expense-form">
+    <div class="form-group">
+      <label for="amount">Amount:</label>
+      <input type="number" id="amount" name="amount" step="0.01" required>
+      <label for="currency">Currency:</label>
+      <select id="currency" name="currency" required>
+        <option value="">Select a currency</option>
+        <option value="food">USD</option>
+        <option value="transportation">INR</option>
+        <option value="housing">CAD</option>
+        <option value="entertainment">YEN</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="date">Date:</label>
+      <input type="date" id="date" name="date" required>
+    </div>
+
+    <div class="form-group form-group-category">
+      <label for="category">Category:</label>
+      <select id="category" name="category" required>
+        <option value="">Select a category</option>
+        <option value="food">Food</option>
+        <option value="transportation">Transportation</option>
+        <option value="housing">Housing</option>
+        <option value="entertainment">Entertainment</option>
+        <option value="entertainment">Shopping</option>
+        <option value="entertainment">Medical</option>
+        <option value="entertainment">Groceries</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" rows="4"></textarea>
+    </div>
+        <div class="form-group form-group-actions">
+    <button type="submit">Add Expense</button>
+    </div>
+  </form>
+  </div>
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <span class="close">&times;</span>
+      <h3>Expense Added Successfully!</h3>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
