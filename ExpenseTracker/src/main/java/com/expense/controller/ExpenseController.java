@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.expense.entity.Expense;
 import com.expense.entity.MyBookList;
 import com.expense.service.ExpenseService;
-import com.expense.service.MyBookListService;
+//import com.expense.service.MyBookListService;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -25,7 +25,7 @@ public class ExpenseController {
 	private ExpenseService service;
 	
 	@Autowired
-	private MyBookListService myBookService;
+	//private MyBookListService myBookService;
 	
 	@GetMapping("/")
 	public String home() {
@@ -52,13 +52,13 @@ public class ExpenseController {
 		service.save(b);
 		return "redirect:/available_expenses";
 	}
-	@GetMapping("/my_books")
-	public String getMyBooks(Model model)
-	{
-		List<MyBookList>list=myBookService.getAllMyBooks();
-		model.addAttribute("book",list);
-		return "myBooks";
-	}
+//	@GetMapping("/my_books")
+//	public String getMyBooks(Model model)
+//	{
+//		List<MyBookList>list=myBookService.getAllMyBooks();
+//		model.addAttribute("book",list);
+//		return "myBooks";
+//	}
 //	@RequestMapping("/mylist/{id}")
 //	public String getMyList(@PathVariable("id") int id) {
 //		Expense b=service.getBookById(id);
