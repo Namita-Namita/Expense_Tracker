@@ -1,0 +1,32 @@
+.divider:after,
+.divider:before {
+content: "";
+flex: 1;
+height: 1px;
+background: #eee;
+}
+.h-custom {
+height: calc(100% - 73px);
+}
+@media (max-width: 450px) {
+.h-custom {
+height: 100%;
+}
+}
+.form-group-actions {
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  button[type="button"] {
+    padding: 10px 20px;
+    background-color: #de6413;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button[type="button"]:hover {
+    background-color: #cb9063;
+  }

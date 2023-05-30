@@ -27,11 +27,14 @@ public class ExpenseController {
 	@Autowired
 	//private MyBookListService myBookService;
 	
-	@GetMapping("/")
+	@GetMapping("/home")
 	public String home() {
 		return "home";
 	}
-	
+	@GetMapping("/login")
+	public String login() {
+		return "Login";
+	}
 	@GetMapping("/new_expense")
 	public String Newexpense() {
 		return "ExpenseForm";
@@ -67,7 +70,7 @@ public class ExpenseController {
 //		return "redirect:/my_books";
 //	}
 	
-	@RequestMapping("/editExpense/{id}")
+	@RequestMapping("/available_expenses/editExpense/{id}")
 	public String editExpense(@PathVariable("id") int id, Model model) {
 		Expense expense=service.getBookById(id);
 		model.addAttribute("expense",expense);
@@ -94,7 +97,7 @@ public class ExpenseController {
 		service.deleteById(id);
 		return "redirect:/available_expenses";
 	}
-	@RequestMapping(value="/editExpense/update/{id}", method= {RequestMethod.GET, RequestMethod.PUT})
+	@RequestMapping(value="/available_expenses/editExpense/update/{id}", method= {RequestMethod.GET, RequestMethod.PUT})
 	public String updateExpense(@ModelAttribute Expense expense) {
 		service.save(expense);
 		return "redirect:/available_expenses";

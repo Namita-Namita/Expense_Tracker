@@ -2,7 +2,9 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.com">
 <head>
   <title>Edit the Expense</title>
+  <!-- css followed from path /css/style.css -->
   <link rel="stylesheet" type="text/css" href="/css/style.css">
+  <!-- css followed from bootstarp for menu -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
@@ -15,6 +17,7 @@
     
 </head>
 <body>
+<!-- top menu of the page -->
 	 <nav class="navbar navbar-expand-lg navbar-light bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand text-white" href="#">Expense Tracker</a>
@@ -24,24 +27,25 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active text-white" aria-current="page" href="/">Home</a>
+          <a class="nav-link active text-white" aria-current="page" href="/home" onclick= "return confirm('Are you sure you want to leave? Changes will get discarded')">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="available_expenses">Expenses</a>
+          <a class="nav-link text-white" href="/available_expenses" onclick= "return confirm('Are you sure you want to leave? Changes will get discarded')">Expenses</a>
         </li>
          <li class="nav-item">
-          <a class="nav-link text-white" href="new_expense">Add New Expense</a>
+          <a class="nav-link text-white" href="/new_expense" onclick= "return confirm('Are you sure you want to leave? Changes will get discarded')">Add New Expense</a>
         </li>
       </ul>
       <div>
-      		 <a class="nav-link text-white" href="login">Login</a>
+      		 <a class="nav-link text-white" href="/login" onclick= "return confirm('Are you sure you want to leave? Changes will get discarded')">Login</a>
       </div>
     </div>
   </div>
 </nav>
+<!-- The form to edit any existing expense for the user from the list of expenses-->
   <h1>Edit the Expense</h1>
   <div class="form-container">
-  <form id="expense-form" th:action="@{/editExpense/update/{id} (id= ${expense.id})}" method="put ">
+  <form id="expense-form" th:action="@{/available_expenses/editExpense/update/{id} (id= ${expense.id})}" method="put ">
     <div class="form-group">
       <label for="amount">Amount:</label>
       <input type="number" id="amount" name="amount" step="0.01" th:value="${expense.amount}" required>
@@ -94,7 +98,7 @@
     </div>
   </div> -->
 
-  <!--  <script src="script.js"></script> -->
+  <!--  script to auto-populate the existing value of date  -->
    <script>
     window.addEventListener('DOMContentLoaded', function() {
       // Retrieve the date value from the URL parameter

@@ -4,13 +4,14 @@
     
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <!-- css followed from bootstarp for menu -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Expense Tracker</title>
      <script src="https://kit.fontawesome.com/0faddc1af8.js" crossorigin="anonymous"></script>
   </head>
   <body>
    
-   
+   <!-- top menu of the page -->
    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand text-white" href="#">Expense Tracker</a>
@@ -35,7 +36,7 @@
     </div>
   </div>
 </nav>
-
+<!--  A table displaying all existing expenses with an option to delete to edit them by id. -->
   <div class="container my-5 col-md-8">
   		<table class="table  table-striped table-hover">
   <thead>
@@ -57,7 +58,7 @@
       <td th:text="${#dates.format(b.date, 'dd/MM/yyyy')}"></td> 
       <td th:text="${b.description}"></td> 
       <td><a class="btn btn-secondary btn-sm" th:href="@{/mylist/{id}(id=${b.id})}">Add To Mybook</a> 
-      <a style="color:blue" th:href="@{/editExpense/{id}(id=${b.id}, date=${#dates.format(b.date, 'dd/MM/yyyy')})}"><i class="fa-solid fa-pen-to-square ms-4"></i></a>
+      <a style="color:blue" th:href="@{/available_expenses/editExpense/{id}(id=${b.id}, date=${#dates.format(b.date, 'dd/MM/yyyy')})}"><i class="fa-solid fa-pen-to-square ms-4"></i></a>
       <a style="color:red" th:href="@{/deleteExpense/{id}(id=${b.id})}" onclick= "return confirm('Are you sure you want to delete this record')"><i class="fa-solid fa-trash ms-4"></i></a>
       </td> 
       
