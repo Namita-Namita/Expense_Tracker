@@ -57,8 +57,8 @@
       <td th:text="${#dates.format(b.date, 'dd/MM/yyyy')}"></td> 
       <td th:text="${b.description}"></td> 
       <td><a class="btn btn-secondary btn-sm" th:href="@{/mylist/{id}(id=${b.id})}">Add To Mybook</a> 
-      <a style="color:blue" th:href="@{/editExpense/{id}(id=${b.id}, category=${b.category}, amount=${b.amount}, currency=${b.currency}, date=${#dates.format(b.date, 'dd/MM/yyyy')}, description=${b.description})}"><i class="fa-solid fa-pen-to-square ms-4"></i></a>
-      <a style="color:red" th:href="@{/deleteExpense/{id}(id=${b.id})}"><i class="fa-solid fa-trash ms-4"></i></a>
+      <a style="color:blue" th:href="@{/editExpense/{id}(id=${b.id}, date=${#dates.format(b.date, 'dd/MM/yyyy')})}"><i class="fa-solid fa-pen-to-square ms-4"></i></a>
+      <a style="color:red" th:href="@{/deleteExpense/{id}(id=${b.id})}" onclick= "return confirm('Are you sure you want to delete this record')"><i class="fa-solid fa-trash ms-4"></i></a>
       </td> 
       
     </tr>

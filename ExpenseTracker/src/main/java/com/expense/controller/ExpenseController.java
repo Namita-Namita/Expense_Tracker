@@ -68,22 +68,22 @@ public class ExpenseController {
 //	}
 	
 	@RequestMapping("/editExpense/{id}")
-	public String editExpense(@PathVariable("id") int id, @RequestParam("category") String cat, @RequestParam("currency") String curr,@RequestParam("amount") double amt,@RequestParam("date") @DateTimeFormat(pattern = "dd/MM/yyyy") Date date,@RequestParam("description") String des, Model model) throws ParseException {
-		
-		Expense b=service.getBookById(id);
+	public String editExpense(@PathVariable("id") int id, Model model) {
+		Expense expense=service.getBookById(id);
+		model.addAttribute("expense",expense);
 		// Format the date as mm-dd-yyyy
-	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-	    String d = dateFormat.format(date);
-		System.out.println("Category: " + cat);
-		System.out.println("Currency: " + curr);
-		System.out.println("Date: " + d);
-		//date= (Date) date;
-		 model.addAttribute("id", id);
-		    model.addAttribute("category", cat);
-		    model.addAttribute("currency", curr);
-		    model.addAttribute("amount", amt);
-		    model.addAttribute("date", d);
-		    model.addAttribute("description", des);
+//	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+//	    String d = dateFormat.format(date);
+//		System.out.println("Category: " + cat);
+//		System.out.println("Currency: " + curr);
+//		System.out.println("Date: " + d);
+//		//date= (Date) date;
+//		 model.addAttribute("id", id);
+//		    model.addAttribute("category", cat);
+//		    model.addAttribute("currency", curr);
+//		    model.addAttribute("amount", amt);
+//		    model.addAttribute("date", d);
+//		    model.addAttribute("description", des);
 		//model.addAttribute("Expense",b);
 		//model.addAttribute("cssFile", "style.css");
 		    
@@ -92,6 +92,11 @@ public class ExpenseController {
 	@RequestMapping("/deleteExpense/{id}")
 	public String deleteExpense(@PathVariable("id")int id) {
 		service.deleteById(id);
+		return "redirect:/available_expenses";
+	}
+	@RequestMapping(value="/editExpense/update/{id}", method= {RequestMethod.GET, RequestMethod.PUT})
+	public String updateExpense(@ModelAttribute Expense expense) {
+		service.save(expense);
 		return "redirect:/available_expenses";
 	}
 	

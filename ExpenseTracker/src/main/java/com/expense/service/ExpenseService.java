@@ -23,7 +23,7 @@ public class ExpenseService {
 	}
 	
 	public Expense getBookById(int id) {
-		return bRepo.findById(id).get();
+		return bRepo.findById(id).orElse(null);
 	}
 	public void deleteById(int id) {
 		bRepo.deleteById(id);
