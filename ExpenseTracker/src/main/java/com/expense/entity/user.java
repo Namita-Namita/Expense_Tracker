@@ -40,6 +40,10 @@ public class user {
 							// role_id as foreign key in third table user_roles
 						            name = "role_id", referencedColumnName = "id"))
 	Collection<Role> roles;
+	
+	public user() {
+		
+	}
 	public user(String firstName, String lastName, String email, String password, Collection<Role> roles) {
 		super();
 		this.firstName = firstName;

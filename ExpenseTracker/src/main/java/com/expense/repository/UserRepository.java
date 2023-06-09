@@ -10,6 +10,6 @@ import com.expense.entity.user;
 @Repository
 public interface UserRepository extends JpaRepository<user,Long>  {
 
-
+	user findByEmail(String email);
 
 }

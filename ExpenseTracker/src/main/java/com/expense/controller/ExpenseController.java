@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.expense.entity.Expense;
-import com.expense.entity.MyBookList;
 import com.expense.service.ExpenseService;
 //import com.expense.service.MyBookListService;
 import java.text.DateFormat;
@@ -26,15 +25,16 @@ public class ExpenseController {
 	
 	@Autowired
 	//private MyBookListService myBookService;
+	@GetMapping("/")
+	public String homedef() {
+		return "home";
+	}
 	
 	@GetMapping("/home")
 	public String home() {
 		return "home";
 	}
-	@GetMapping("/login")
-	public String login() {
-		return "Login";
-	}
+	
 	@GetMapping("/new_expense")
 	public String Newexpense() {
 		return "ExpenseForm";
