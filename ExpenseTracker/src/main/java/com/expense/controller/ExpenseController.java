@@ -9,6 +9,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.expense.entity.Expense;
 import com.expense.service.ExpenseService;
+
+import java.security.Principal;
 //import com.expense.service.MyBookListService;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -23,7 +25,7 @@ public class ExpenseController {
 	@Autowired
 	private ExpenseService service;
 	
-	@Autowired
+	
 	//private MyBookListService myBookService;
 	@GetMapping("/")
 	public String homedef() {
@@ -36,13 +38,17 @@ public class ExpenseController {
 	}
 	
 	@GetMapping("/new_expense")
-	public String Newexpense() {
+	public String Newexpense(Model model) {
+		String message = (String) model.getAttribute("message");
+        model.addAttribute("message", message);
 		return "ExpenseForm";
 	}
 	
 	@GetMapping("/available_expenses")
-	public ModelAndView getAllBook() {
+	public ModelAndView getAllBook(Model model) {
 		List<Expense>list=service.getAllExpense();
+		String message = (String) model.getAttribute("message");
+        model.addAttribute("message", message);
 		//System.out.println(list);
 //		ModelAndView m=new ModelAndView();
 //		m.setViewName("bookList");
@@ -51,8 +57,9 @@ public class ExpenseController {
 	}
 	
 	@PostMapping("/save")
-	public String addExpense(@ModelAttribute Expense b) {
-		service.save(b);
+	public String addExpense(@ModelAttribute Expense b, Principal p) {
+		String email= p.getName();
+		service.save(b,email);
 		return "redirect:/available_expenses";
 	}
 //	@GetMapping("/my_books")
@@ -71,8 +78,9 @@ public class ExpenseController {
 //	}
 	
 	@RequestMapping("/available_expenses/editExpense/{id}")
-	public String editExpense(@PathVariable("id") int id, Model model) {
-		Expense expense=service.getBookById(id);
+	public String editExpense(@PathVariable("id") int id, Model model, Principal p) {
+		String email= p.getName();
+		Expense expense=service.getById(id,email);
 		model.addAttribute("expense",expense);
 		// Format the date as mm-dd-yyyy
 //	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
@@ -93,13 +101,15 @@ public class ExpenseController {
 		return "ExpenseFormEdit";
 	}
 	@RequestMapping("/deleteExpense/{id}")
-	public String deleteExpense(@PathVariable("id")int id) {
-		service.deleteById(id);
+	public String deleteExpense(@PathVariable("id")int id, Principal p) {
+		String email= p.getName();
+		service.deleteExpenseByIdAndUserId(id, email);
 		return "redirect:/available_expenses";
 	}
 	@RequestMapping(value="/available_expenses/editExpense/update/{id}", method= {RequestMethod.GET, RequestMethod.PUT})
-	public String updateExpense(@ModelAttribute Expense expense) {
-		service.save(expense);
+	public String updateExpense(@ModelAttribute Expense expense, Principal p) {
+		String email= p.getName();
+		service.save(expense, email);
 		return "redirect:/available_expenses";
 	}
 	

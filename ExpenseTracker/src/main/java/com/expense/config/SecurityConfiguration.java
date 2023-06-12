@@ -43,6 +43,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().antMatchers(
 				"/home**",
+				"/",
+				"/dashboard**",
 				"/new_expense**",
 				"/available_expenses**",
 				"/save**",
@@ -50,12 +52,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				 "/registration**",
 	                "/js/**",
 	                "/css/**",
-	                "/img/**").permitAll()
+	                "/images/**").permitAll()
 		.anyRequest().authenticated()
 		.and()
 		.formLogin()
 		.loginPage("/login")
 		.permitAll()
+		.defaultSuccessUrl("/dashboard")
 		.and()
 		.logout()
 		.invalidateHttpSession(true)

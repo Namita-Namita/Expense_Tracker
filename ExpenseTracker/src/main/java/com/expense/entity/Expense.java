@@ -6,6 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
@@ -23,11 +26,15 @@ public class Expense {
     private String currency;
     private double amount;
     private String description;
+    
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private user user;
 
     // Constructors, getters, and setters
 
     
-	public Expense(int id, Date date, String category, String currency, double amount, String description) {
+	public Expense(int id, Date date, String category, String currency, double amount, String description, user user) {
 		super();
 		this.id = id;
 		this.date = date;
@@ -35,12 +42,19 @@ public class Expense {
 		this.currency = currency;
 		this.amount = amount;
 		this.description = description;
+		this.user=user;
 	}
 	public Expense() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
+	public user getuser() {
+        return user;
+    }
+
+    public void setuser(user user) {
+        this.user = user;
+    }
 	public int getId() {
         return id;
     }
