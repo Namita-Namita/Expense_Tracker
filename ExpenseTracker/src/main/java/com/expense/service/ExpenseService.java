@@ -35,10 +35,10 @@ public class ExpenseService {
 	
 	public Expense getById(int id, String username) {
 		//user name= urepo.findByEmail(username);
-		return bRepo.findByIdAndUserId(id, username);
+		return bRepo.findByIdAndUserEmail(id, username);
 	}
 	@Transactional
 	public void deleteExpenseByIdAndUserId(int id, String u) {
-		bRepo.deleteByIdAndUserId(id, u);
+		bRepo.deleteByIdAndUserEmail(id, u);
 	}
 }

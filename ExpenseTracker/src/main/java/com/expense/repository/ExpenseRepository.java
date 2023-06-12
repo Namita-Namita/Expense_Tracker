@@ -12,8 +12,8 @@ import com.expense.entity.Expense;
 @Repository
 public interface ExpenseRepository extends JpaRepository<Expense,Integer>  {
 	 List<Expense> findAllByUserEmail(@Param("email") String email);
-	 void deleteByIdAndUserId(int recordId, String userId);
-	Expense findByIdAndUserId(int id, String username);
+	 void deleteByIdAndUserEmail(int recordId, String userId);
+	 Expense findByIdAndUserEmail(int id, String username);
 
 
 

@@ -82,21 +82,7 @@ public class ExpenseController {
 		String email= p.getName();
 		Expense expense=service.getById(id,email);
 		model.addAttribute("expense",expense);
-		// Format the date as mm-dd-yyyy
-//	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-//	    String d = dateFormat.format(date);
-//		System.out.println("Category: " + cat);
-//		System.out.println("Currency: " + curr);
-//		System.out.println("Date: " + d);
-//		//date= (Date) date;
-//		 model.addAttribute("id", id);
-//		    model.addAttribute("category", cat);
-//		    model.addAttribute("currency", curr);
-//		    model.addAttribute("amount", amt);
-//		    model.addAttribute("date", d);
-//		    model.addAttribute("description", des);
-		//model.addAttribute("Expense",b);
-		//model.addAttribute("cssFile", "style.css");
+		
 		    
 		return "ExpenseFormEdit";
 	}
