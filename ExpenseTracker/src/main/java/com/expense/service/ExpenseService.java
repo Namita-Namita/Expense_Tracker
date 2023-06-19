@@ -27,7 +27,7 @@ public class ExpenseService {
 		return bRepo.save(b);
 	}
 	
-	public List<Expense> getAllExpense(){
+	public List<Expense> getAllExpenses(){
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 	    String username = authentication.getName();
 	    return bRepo.findAllByUserEmail(username);
@@ -41,4 +41,26 @@ public class ExpenseService {
 	public void deleteExpenseByIdAndUserId(int id, String u) {
 		bRepo.deleteByIdAndUserEmail(id, u);
 	}
+//	public List<Expense> getFilteredEntries(String month, String year) {
+//		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//	    String username = authentication.getName();
+//		if (month != "00" && year != "0000") {
+//            // Filter entries based on both month and year
+//			int m = Integer.parseInt(month);
+//			int y = Integer.parseInt(year);  
+//            return bRepo.findByMonthAndYear(m, y);
+//        } else if (month != "00") {
+//            // Filter entries based on month only
+//        	int m = Integer.parseInt(month);
+//            return bRepo.findByMonth(m);
+//        } else if (year != "0000") {
+//            // Filter entries based on year only
+//        	int y = Integer.parseInt(year); 
+//            return bRepo.findByYear(y);
+//        } else {
+//            // No filters specified, return all entries
+//            return bRepo.findAllByUserEmail(username);
+//        }
+//    }
+
 }

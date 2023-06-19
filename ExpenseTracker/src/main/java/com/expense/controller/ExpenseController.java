@@ -45,8 +45,8 @@ public class ExpenseController {
 	}
 	
 	@GetMapping("/available_expenses")
-	public ModelAndView getAllBook(Model model) {
-		List<Expense>list=service.getAllExpense();
+	public ModelAndView getAllExpenses(Model model) {
+		List<Expense>list=service.getAllExpenses();
 		String message = (String) model.getAttribute("message");
         model.addAttribute("message", message);
 		//System.out.println(list);
@@ -98,5 +98,10 @@ public class ExpenseController {
 		service.save(expense, email);
 		return "redirect:/available_expenses";
 	}
-	
+//	@GetMapping("/entries")
+//    public ModelAndView getFilteredEntries(@RequestParam("month") String month, @RequestParam("year") String year, Model model) {
+//		List<Expense> filteredEntries = service.getFilteredEntries(month, year);
+//	    model.addAttribute("entries", filteredEntries);
+//	    return new ModelAndView("ExpenseList","expense",filteredEntries);
+//    }
 }
