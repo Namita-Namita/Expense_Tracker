@@ -16,6 +16,8 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.Month;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
@@ -31,7 +33,10 @@ public class ExpenseController {
 	public String homedef() {
 		return "home";
 	}
-	
+	@GetMapping("/getchart")
+	public String chart() {
+		return "chart";
+	}
 	@GetMapping("/home")
 	public String home() {
 		return "home";
@@ -98,10 +103,22 @@ public class ExpenseController {
 		service.save(expense, email);
 		return "redirect:/available_expenses";
 	}
-//	@GetMapping("/entries")
-//    public ModelAndView getFilteredEntries(@RequestParam("month") String month, @RequestParam("year") String year, Model model) {
-//		List<Expense> filteredEntries = service.getFilteredEntries(month, year);
-//	    model.addAttribute("entries", filteredEntries);
-//	    return new ModelAndView("ExpenseList","expense",filteredEntries);
-//    }
+	@GetMapping("/entries")
+    public ModelAndView getFilteredEntries(@RequestParam(required = false)  Integer month, @RequestParam(required = false)  Integer year, Principal p, Model model) {
+		String email= p.getName();
+		List<Expense> filteredEntries = service.getFilteredEntries(month, year);
+	    model.addAttribute("entries", filteredEntries);
+	    return new ModelAndView("ExpenseList","expense",filteredEntries);
+    }
+	@GetMapping("/chart")
+	public String generateExpenseChart(@RequestParam("year") int year, Model model) {
+		        List<Expense> expenses = service.getExpensesByYear(year);
+		        Map<Integer, Double> monthlyTotals = service.calculateMonthlyExpenseTotals(expenses);
+
+		        model.addAttribute("year", year);
+		        model.addAttribute("monthlyTotals", monthlyTotals);
+
+	    return "ExpenseChart"; // Return the view name for the chart
+	}
+
 }

@@ -15,12 +15,16 @@ public interface ExpenseRepository extends JpaRepository<Expense,Integer>  {
 	 List<Expense> findAllByUserEmail(@Param("email") String email);
 	 void deleteByIdAndUserEmail(int recordId, String userId);
 	 Expense findByIdAndUserEmail(int id, String username);
-//	 @Query("SELECT e FROM Expense e WHERE MONTH(e.dateColumn) = :month AND YEAR(e.dateColumn) = :year")
-//	 List<Expense> findByMonthAndYear(@Param("month")int month, @Param("year")int year);
-//	 @Query("SELECT e FROM Expense e WHERE MONTH(e.dateColumn) = :month")
-//	    List<Expense> findByMonth(@Param("month")int month);
-//	    @Query("SELECT e FROM Expense e WHERE YEAR(e.dateColumn) = :year")
-//	    List<Expense> findByYear(@Param("year") int year);
+	 @Query("SELECT e FROM Expense e JOIN e.user u WHERE u.email = :email " +
+	           "AND (:month = 0 OR MONTH(e.date) = :month) " +
+	           "AND (:year IS NULL OR YEAR(e.date) = :year)")
+	 List<Expense> findByMonthAndYear(@Param("month")int month, @Param("year")int year,@Param("email") String email);
+	 @Query("SELECT e FROM Expense e JOIN e.user u WHERE u.email = :email AND MONTH(e.date) = :month")
+	    List<Expense> findByMonth(@Param("month")int month,@Param("email") String email);
+
+	 @Query("SELECT e FROM Expense e JOIN e.user u WHERE u.email = :email AND YEAR(e.date) = :year")
+	    List<Expense> findByYear(@Param("year") int year,@Param("email") String email);
+	
 
 
 

@@ -1,6 +1,9 @@
 package com.expense.service;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
+import java.util.*;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -41,26 +44,45 @@ public class ExpenseService {
 	public void deleteExpenseByIdAndUserId(int id, String u) {
 		bRepo.deleteByIdAndUserEmail(id, u);
 	}
-//	public List<Expense> getFilteredEntries(String month, String year) {
-//		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//	    String username = authentication.getName();
-//		if (month != "00" && year != "0000") {
-//            // Filter entries based on both month and year
-//			int m = Integer.parseInt(month);
-//			int y = Integer.parseInt(year);  
-//            return bRepo.findByMonthAndYear(m, y);
-//        } else if (month != "00") {
-//            // Filter entries based on month only
-//        	int m = Integer.parseInt(month);
-//            return bRepo.findByMonth(m);
-//        } else if (year != "0000") {
-//            // Filter entries based on year only
-//        	int y = Integer.parseInt(year); 
-//            return bRepo.findByYear(y);
-//        } else {
-//            // No filters specified, return all entries
-//            return bRepo.findAllByUserEmail(username);
-//        }
-//    }
+	public List<Expense> getFilteredEntries(Integer month, Integer year) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	    String username = authentication.getName();
+		if (month != 0 && year != null) {
+            // Filter entries based on both month and year
+            return bRepo.findByMonthAndYear(month, year,username);
+        } else if (month != 0) {
+            // Filter entries based on month only
+        	//int m = Integer.parseInt(month);
+            return bRepo.findByMonth(month,username);
+        } else if (year != null) {
+            // Filter entries based on year only
+        	//int y = Integer.parseInt(year); 
+            return bRepo.findByYear(year,username);
+        } else if (month == 0 && year == null) {
+            // Filter entries based on both month and year
+        	return bRepo.findAllByUserEmail(username);
+        }else {
+            // No filters specified, return all entries
+            return bRepo.findAllByUserEmail(username);
+        }
+    }
+	 public List<Expense> getExpensesByYear(int year) {
+		 Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		    String username = authentication.getName();
+	        return bRepo.findByYear(year,username);
+	    }
+	 public Map<Integer, Double> calculateMonthlyExpenseTotals(List<Expense> expenses) {
+	        Map<Integer, Double> monthlyTotals = new HashMap<>();
+
+	        for (Expense expense : expenses) {
+	        	LocalDate date = expense.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		        int month = date.getMonthValue();
+	            double amount = expense.getAmount();
+
+	            monthlyTotals.put(month, monthlyTotals.getOrDefault(month, 0.0) + amount);
+	        }
+
+	        return monthlyTotals;
+	    }
 
 }
