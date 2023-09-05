@@ -50,3 +50,5 @@ or use the below command directly
 ```
 5. Access the Web App
 Open your web browser and navigate to http://localhost:1001.
+
+## Project Screenshots
