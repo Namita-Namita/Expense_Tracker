@@ -52,3 +52,19 @@ or use the below command directly
 Open your web browser and navigate to http://localhost:1001.
 
 ## Project Screenshots
+<p align="center"><img width="1429" alt="Screenshot 2023-09-11 at 1 35 35 PM" src="https://github.com/Namita-Namita/Expense_Tracker/assets/31967922/fb478d08-ae40-4115-af8b-82879f39282a">
+<br><em>Fig 1.: Snapshot of Welcome page (Dashboard)</em></p>
+<p align="center"><img width="1432" alt="Screenshot 2023-09-11 at 1 36 42 PM" src="https://github.com/Namita-Namita/Expense_Tracker/assets/31967922/2fe24673-8182-44f3-b24a-6c20c97fedbd"><br><em>Fig 2.: Snapshot of New User Register page (Login)</em></p>
+<p align="center"><img width="1437" alt="Screenshot 2023-09-11 at 1 37 17 PM" src="https://github.com/Namita-Namita/Expense_Tracker/assets/31967922/4d2d6f67-019a-427a-99bb-a857ea11253a"><br><em>Fig 3.: Snapshot of New User Registration successful</em></p>
+<p align="center"><img width="1428" alt="Screenshot 2023-09-11 at 1 38 07 PM" src="https://github.com/Namita-Namita/Expense_Tracker/assets/31967922/f9df4952-abfd-43b1-8d60-dd57e2949812"><br><em>Fig 4.: Snapshot of Login page (Login)</em></p>
+<p align="center"><img width="1432" alt="Screenshot 2023-09-11 at 1 38 43 PM" src="https://github.com/Namita-Namita/Expense_Tracker/assets/31967922/f1a29657-e8eb-4873-be6b-b7abab4b7993"><br><em>Fig 5.: Snapshot after login successful</em></p>
+<p align="center"><img width="1433" alt="Screenshot 2023-09-11 at 1 40 22 PM" src="https://github.com/Namita-Namita/Expense_Tracker/assets/31967922/5de1dbc2-9f1e-408a-99ce-22322ca7efd1"><br><em>Fig 6.: Snapshot of Add New Expense page</em></p>
+<p align="center"><img width="1431" alt="Screenshot 2023-09-11 at 1 42 25 PM" src="https://github.com/Namita-Namita/Expense_Tracker/assets/31967922/4f04c808-dc1e-41fa-b82d-e8596228f696"><br><em>Fig 7.: Snapshot of All Expenses page, all the expenses with an option to edit or update is displayed. Filter by month or year is available.</em></p>
+<p align="center"><img width="1440" alt="Screenshot 2023-09-11 at 1 43 55 PM" src="https://github.com/Namita-Namita/Expense_Tracker/assets/31967922/027197ed-4487-4cf4-a840-74574f83e764"><br><em>Fig 8.: Snapshot of Expense Report page, all the expenses on yearly basis can be displayed in graphical format.</em></p>
+
+## Future Enhancements:
+* **Custom categories:** Give users the ability to create their own categories, beyond the predefined ones.
+* **Custom currencies:** Give users the ability to create their own currencies, beyond the predefined ones.
+* **Export and Import data:** Allow users to export their data for backup or analysis in other software and import data from other sources.
+* **Monthly/Weekly Budget Caps:** Allow users to set a budget cap for specific durations.
+* **Budget notifications:** Notify users when they are close to reaching or have exceeded their budget.
